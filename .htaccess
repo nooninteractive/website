@@ -1,0 +1,14 @@
+DirectoryIndex index.html
+Options -Indexes
+RewriteEngine On
+
+# Both historical spellings redirect when the subdomain shares this document root.
+RewriteCond %{HTTP_HOST} ^(?:eldervale|eldervile)\.nooninteractive\.com$ [NC]
+RewriteCond %{REQUEST_URI} !^/eldervale(?:/|$) [NC]
+RewriteRule ^(.*)$ https://nooninteractive.com/eldervale/$1 [R=301,L,NE]
+
+RewriteCond %{HTTP_HOST} ^(?:eldervale|eldervile)\.nooninteractive\.com$ [NC]
+RewriteRule ^ https://nooninteractive.com%{REQUEST_URI} [R=301,L,NE]
+
+RewriteCond %{HTTP_HOST} ^www\.nooninteractive\.com$ [NC]
+RewriteRule ^ https://nooninteractive.com%{REQUEST_URI} [R=301,L,NE]
